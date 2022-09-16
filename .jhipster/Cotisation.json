@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916143419",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "cotisation",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "famille",
+      "fieldType": "Categorie",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Sante,Retraite,Famille,AssuranceChomage,AutresCotisationsEmployeur,CGSCRDS,ReductionCotisationsPatronales"
+    },
+    {
+      "fieldName": "taux",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "actuel",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Cotisation",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ficheDePaie",
+      "otherEntityRelationshipName": "cotisation",
+      "ownerSide": false,
+      "relationshipName": "ficheDePaie",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

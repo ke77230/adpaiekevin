@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Employeur.
+    -->
+    <changeSet id="20220916143410-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="employeur_id"
+                                 baseTableName="rel_employeur__convention_collective"
+                                 constraintName="fk_rel_employeur__convention_collective__employeur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employeur"/>
+
+        <addForeignKeyConstraint baseColumnNames="convention_collective_id"
+                                 baseTableName="rel_employeur__convention_collective"
+                                 constraintName="fk_rel_employeur__convention_co__convention_collective_6a_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="convention_collective"/>
+    </changeSet>
+</databaseChangeLog>

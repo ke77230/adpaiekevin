@@ -1,0 +1,239 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-conge-heading" data-cy="CongeCreateUpdateHeading" jhiTranslate="adpaiekevinApp.conge.home.createOrEditLabel">
+        Créer ou éditer un Conge
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.holdateStart" for="field_holdateStart">Holdate Start</label>
+          <div class="input-group">
+            <input
+              id="field_holdateStart"
+              data-cy="holdateStart"
+              type="text"
+              class="form-control"
+              name="holdateStart"
+              ngbDatepicker
+              #holdateStartDp="ngbDatepicker"
+              formControlName="holdateStart"
+            />
+            <button type="button" class="btn btn-secondary" (click)="holdateStartDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="editForm.get('holdateStart')!.invalid && (editForm.get('holdateStart')!.dirty || editForm.get('holdateStart')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('holdateStart')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.holdateEnd" for="field_holdateEnd">Holdate End</label>
+          <div class="input-group">
+            <input
+              id="field_holdateEnd"
+              data-cy="holdateEnd"
+              type="text"
+              class="form-control"
+              name="holdateEnd"
+              ngbDatepicker
+              #holdateEndDp="ngbDatepicker"
+              formControlName="holdateEnd"
+            />
+            <button type="button" class="btn btn-secondary" (click)="holdateEndDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('holdateEnd')!.invalid && (editForm.get('holdateEnd')!.dirty || editForm.get('holdateEnd')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('holdateEnd')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.holdatePay" for="field_holdatePay">Holdate Pay</label>
+          <input
+            type="number"
+            class="form-control"
+            name="holdatePay"
+            id="field_holdatePay"
+            data-cy="holdatePay"
+            formControlName="holdatePay"
+          />
+          <div *ngIf="editForm.get('holdatePay')!.invalid && (editForm.get('holdatePay')!.dirty || editForm.get('holdatePay')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('holdatePay')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('holdatePay')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.nbCongeAcquis" for="field_nbCongeAcquis">Nb Conge Acquis</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nbCongeAcquis"
+            id="field_nbCongeAcquis"
+            data-cy="nbCongeAcquis"
+            formControlName="nbCongeAcquis"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.nbCongePris" for="field_nbCongePris">Nb Conge Pris</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nbCongePris"
+            id="field_nbCongePris"
+            data-cy="nbCongePris"
+            formControlName="nbCongePris"
+          />
+          <div *ngIf="editForm.get('nbCongePris')!.invalid && (editForm.get('nbCongePris')!.dirty || editForm.get('nbCongePris')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nbCongePris')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('nbCongePris')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.dateDemande" for="field_dateDemande">Date Demande</label>
+          <div class="input-group">
+            <input
+              id="field_dateDemande"
+              data-cy="dateDemande"
+              type="text"
+              class="form-control"
+              name="dateDemande"
+              ngbDatepicker
+              #dateDemandeDp="ngbDatepicker"
+              formControlName="dateDemande"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDemandeDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div *ngIf="editForm.get('dateDemande')!.invalid && (editForm.get('dateDemande')!.dirty || editForm.get('dateDemande')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateDemande')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.decision" for="field_decision">Decision</label>
+          <select class="form-control" name="decision" formControlName="decision" id="field_decision" data-cy="decision">
+            <option [ngValue]="null">{{ 'adpaiekevinApp.Decision.null' | translate }}</option>
+            <option *ngFor="let decision of decisionValues" [value]="decision">
+              {{ 'adpaiekevinApp.Decision.' + decision | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('decision')!.invalid && (editForm.get('decision')!.dirty || editForm.get('decision')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('decision')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.dateReponse" for="field_dateReponse">Date Reponse</label>
+          <div class="input-group">
+            <input
+              id="field_dateReponse"
+              data-cy="dateReponse"
+              type="text"
+              class="form-control"
+              name="dateReponse"
+              ngbDatepicker
+              #dateReponseDp="ngbDatepicker"
+              formControlName="dateReponse"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateReponseDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conge.contrat" for="field_contrat">Contrat</label>
+          <select
+            class="form-control"
+            id="field_contrat"
+            data-cy="contrat"
+            name="contrat"
+            formControlName="contrat"
+            [compareWith]="compareContrat"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="contratOption" *ngFor="let contratOption of contratsSharedCollection">{{ contratOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

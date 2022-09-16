@@ -1,0 +1,155 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-location-heading" data-cy="LocationCreateUpdateHeading" jhiTranslate="adpaiekevinApp.location.home.createOrEditLabel">
+        Créer ou éditer un Location
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.location.streetName" for="field_streetName">Street Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="streetName"
+            id="field_streetName"
+            data-cy="streetName"
+            formControlName="streetName"
+          />
+          <div *ngIf="editForm.get('streetName')!.invalid && (editForm.get('streetName')!.dirty || editForm.get('streetName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('streetName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.location.numeroRue" for="field_numeroRue">Numero Rue</label>
+          <input type="text" class="form-control" name="numeroRue" id="field_numeroRue" data-cy="numeroRue" formControlName="numeroRue" />
+          <div *ngIf="editForm.get('numeroRue')!.invalid && (editForm.get('numeroRue')!.dirty || editForm.get('numeroRue')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numeroRue')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.location.postalCode" for="field_postalCode">Postal Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="postalCode"
+            id="field_postalCode"
+            data-cy="postalCode"
+            formControlName="postalCode"
+          />
+          <div *ngIf="editForm.get('postalCode')!.invalid && (editForm.get('postalCode')!.dirty || editForm.get('postalCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('postalCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.location.city" for="field_city">City</label>
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+          <div *ngIf="editForm.get('city')!.invalid && (editForm.get('city')!.dirty || editForm.get('city')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('city')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.location.stateProvince" for="field_stateProvince">State Province</label>
+          <input
+            type="text"
+            class="form-control"
+            name="stateProvince"
+            id="field_stateProvince"
+            data-cy="stateProvince"
+            formControlName="stateProvince"
+          />
+          <div
+            *ngIf="
+              editForm.get('stateProvince')!.invalid && (editForm.get('stateProvince')!.dirty || editForm.get('stateProvince')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('stateProvince')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="adpaiekevinApp.location.employee" for="field_employees">Employee</label>
+          <select
+            class="form-control"
+            id="field_employees"
+            data-cy="employee"
+            multiple
+            name="employees"
+            formControlName="employees"
+            [compareWith]="compareEmployee"
+          >
+            <option [ngValue]="employeeOption" *ngFor="let employeeOption of employeesSharedCollection">{{ employeeOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="adpaiekevinApp.location.employeur" for="field_employeurs">Employeur</label>
+          <select
+            class="form-control"
+            id="field_employeurs"
+            data-cy="employeur"
+            multiple
+            name="employeurs"
+            formControlName="employeurs"
+            [compareWith]="compareEmployeur"
+          >
+            <option [ngValue]="employeurOption" *ngFor="let employeurOption of employeursSharedCollection">{{ employeurOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

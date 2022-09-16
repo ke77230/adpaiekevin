@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="employee">
+      <h2 data-cy="employeeDetailsHeading"><span jhiTranslate="adpaiekevinApp.employee.detail.title">Employee</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ employee.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="adpaiekevinApp.employee.firstName" [ngbTooltip]="'adpaiekevinApp.employee.help.firstName' | translate"
+            >First Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ employee.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employee.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ employee.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employee.numeroSecuriteSociale">Numero Securite Sociale</span></dt>
+        <dd>
+          <span>{{ employee.numeroSecuriteSociale }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employee.qualification">Qualification</span></dt>
+        <dd>
+          <span>{{ employee.qualification }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employee.tauxImposition">Taux Imposition</span></dt>
+        <dd>
+          <span>{{ employee.tauxImposition }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employee.employee">Employee</span></dt>
+        <dd>
+          <div *ngIf="employee.employee">
+            <a [routerLink]="['/employee', employee.employee.id, 'view']">{{ employee.employee.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employee.job">Job</span></dt>
+        <dd>
+          <span *ngFor="let job of employee.jobs; let last = last">
+            <a [routerLink]="['/job', job.id, 'view']">{{ job.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/employee', employee.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

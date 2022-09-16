@@ -1,0 +1,32 @@
+{
+  "adpaiekevinApp": {
+    "contrat": {
+      "home": {
+        "title": "Contrats",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Contrat",
+        "createOrEditLabel": "Créer ou éditer un Contrat",
+        "notFound": "Aucun Contrat trouvé"
+      },
+      "created": "Un nouveau Contrat a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Contrat avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Contrat avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Contrat {{ id }} ?"
+      },
+      "detail": {
+        "title": "Contrat"
+      },
+      "id": "ID",
+      "salaireBase": "Salaire Base",
+      "emploi": "Emploi",
+      "dateArrive": "Date Arrive",
+      "classification": "Classification",
+      "typeForfait": "Type Forfait",
+      "nbHeure": "Nb Heure",
+      "conventionCollective": "Convention Collective",
+      "employeur": "Employeur",
+      "employee": "Employee"
+    }
+  }
+}

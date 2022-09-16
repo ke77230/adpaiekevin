@@ -1,0 +1,25 @@
+{
+  "adpaiekevinApp": {
+    "mention": {
+      "home": {
+        "title": "Mentions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Mention",
+        "createOrEditLabel": "Créer ou éditer un Mention",
+        "notFound": "Aucun Mention trouvé"
+      },
+      "created": "Un nouveau Mention a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Mention avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Mention avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Mention {{ id }} ?"
+      },
+      "detail": {
+        "title": "Mention"
+      },
+      "id": "ID",
+      "mention": "Mention",
+      "ficheDePaie": "Fiche De Paie"
+    }
+  }
+}

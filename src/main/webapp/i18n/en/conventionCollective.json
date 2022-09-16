@@ -1,0 +1,31 @@
+{
+  "adpaiekevinApp": {
+    "conventionCollective": {
+      "home": {
+        "title": "Convention Collectives",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Convention Collective",
+        "createOrEditLabel": "Create or edit a Convention Collective",
+        "notFound": "No Convention Collectives found"
+      },
+      "created": "A new Convention Collective is created with identifier {{ param }}",
+      "updated": "A Convention Collective is updated with identifier {{ param }}",
+      "deleted": "A Convention Collective is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Convention Collective {{ id }}?"
+      },
+      "detail": {
+        "title": "Convention Collective"
+      },
+      "id": "ID",
+      "idcc": "Idcc",
+      "nom": "Nom",
+      "position": "Position",
+      "coefficient": "Coefficient",
+      "valeurPoint": "Valeur Point",
+      "baseFixe": "Base Fixe",
+      "salaireMinimaux": "Salaire Minimaux",
+      "employeur": "Employeur"
+    }
+  }
+}

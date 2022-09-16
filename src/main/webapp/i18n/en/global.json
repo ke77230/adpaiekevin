@@ -7,6 +7,18 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "location": "Location",
+        "employee": "Employee",
+        "employeur": "Employeur",
+        "job": "Job",
+        "tauxDImposition": "Taux D Imposition",
+        "mention": "Mention",
+        "conge": "Conge",
+        "bonus": "Bonus",
+        "contrat": "Contrat",
+        "ficheDePaie": "Fiche De Paie",
+        "conventionCollective": "Convention Collective",
+        "cotisation": "Cotisation",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

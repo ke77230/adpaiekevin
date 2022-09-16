@@ -48,6 +48,30 @@ public class CacheConfiguration {
             createCache(cm, fr.adaming.adp.domain.User.class.getName());
             createCache(cm, fr.adaming.adp.domain.Authority.class.getName());
             createCache(cm, fr.adaming.adp.domain.User.class.getName() + ".authorities");
+            createCache(cm, fr.adaming.adp.domain.Location.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Location.class.getName() + ".employees");
+            createCache(cm, fr.adaming.adp.domain.Location.class.getName() + ".employeurs");
+            createCache(cm, fr.adaming.adp.domain.Employee.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Employee.class.getName() + ".jobs");
+            createCache(cm, fr.adaming.adp.domain.Employee.class.getName() + ".locations");
+            createCache(cm, fr.adaming.adp.domain.Employeur.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Employeur.class.getName() + ".conventionCollectives");
+            createCache(cm, fr.adaming.adp.domain.Employeur.class.getName() + ".locations");
+            createCache(cm, fr.adaming.adp.domain.Job.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Job.class.getName() + ".employees");
+            createCache(cm, fr.adaming.adp.domain.TauxDImposition.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Mention.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Mention.class.getName() + ".ficheDePaies");
+            createCache(cm, fr.adaming.adp.domain.Conge.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Bonus.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Contrat.class.getName());
+            createCache(cm, fr.adaming.adp.domain.FicheDePaie.class.getName());
+            createCache(cm, fr.adaming.adp.domain.FicheDePaie.class.getName() + ".cotisations");
+            createCache(cm, fr.adaming.adp.domain.FicheDePaie.class.getName() + ".mentions");
+            createCache(cm, fr.adaming.adp.domain.ConventionCollective.class.getName());
+            createCache(cm, fr.adaming.adp.domain.ConventionCollective.class.getName() + ".employeurs");
+            createCache(cm, fr.adaming.adp.domain.Cotisation.class.getName());
+            createCache(cm, fr.adaming.adp.domain.Cotisation.class.getName() + ".ficheDePaies");
             // jhipster-needle-ehcache-add-entry
         };
     }

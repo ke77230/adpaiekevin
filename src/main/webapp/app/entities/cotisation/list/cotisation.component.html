@@ -1,0 +1,123 @@
+<div>
+  <h2 id="page-heading" data-cy="CotisationHeading">
+    <span jhiTranslate="adpaiekevinApp.cotisation.home.title">Cotisations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.cotisation.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cotisation"
+        [routerLink]="['/cotisation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.cotisation.home.createLabel"> Créer un nouveau Cotisation </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cotisations?.length === 0">
+    <span jhiTranslate="adpaiekevinApp.cotisation.home.notFound">Aucun Cotisation trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="cotisations && cotisations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.cotisation.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="famille">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.cotisation.famille">Famille</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="taux">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.cotisation.taux">Taux</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startDate">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.cotisation.startDate">Start Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.cotisation.endDate">End Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="actuel">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.cotisation.actuel">Actuel</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cotisation of cotisations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cotisation', cotisation.id, 'view']">{{ cotisation.id }}</a>
+          </td>
+          <td>{{ cotisation.name }}</td>
+          <td jhiTranslate="{{ 'adpaiekevinApp.Categorie.' + cotisation.famille }}">{{ cotisation.famille }}</td>
+          <td>{{ cotisation.taux }}</td>
+          <td>{{ cotisation.startDate | formatMediumDate }}</td>
+          <td>{{ cotisation.endDate | formatMediumDate }}</td>
+          <td>{{ cotisation.actuel }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cotisation', cotisation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cotisation', cotisation.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(cotisation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

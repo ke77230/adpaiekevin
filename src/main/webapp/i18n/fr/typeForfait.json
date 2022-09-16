@@ -1,0 +1,10 @@
+{
+  "adpaiekevinApp": {
+    "TypeForfait": {
+      "null": "",
+      "Jour": "Jour",
+      "Heure": "Heure",
+      "Commission": "Commission"
+    }
+  }
+}

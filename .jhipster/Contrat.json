@@ -1,0 +1,62 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916143416",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "contrat",
+  "fields": [
+    {
+      "fieldName": "salaireBase",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "emploi",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateArrive",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "classification",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "typeForfait",
+      "fieldType": "TypeForfait",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Jour,Heure,Commission"
+    },
+    {
+      "fieldName": "nbHeure",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Contrat",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "conventionCollective",
+      "relationshipName": "conventionCollective",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "employeur",
+      "relationshipName": "employeur",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "employee",
+      "relationshipName": "employee",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

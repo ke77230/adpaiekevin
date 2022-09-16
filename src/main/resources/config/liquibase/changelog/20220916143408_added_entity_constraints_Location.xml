@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Location.
+    -->
+    <changeSet id="20220916143408-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="rel_location__employee"
+                                 constraintName="fk_rel_location__employee__location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+        <addForeignKeyConstraint baseColumnNames="employee_id"
+                                 baseTableName="rel_location__employee"
+                                 constraintName="fk_rel_location__employee__employee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="rel_location__employeur"
+                                 constraintName="fk_rel_location__employeur__location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+        <addForeignKeyConstraint baseColumnNames="employeur_id"
+                                 baseTableName="rel_location__employeur"
+                                 constraintName="fk_rel_location__employeur__employeur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employeur"/>
+    </changeSet>
+</databaseChangeLog>

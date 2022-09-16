@@ -1,0 +1,28 @@
+{
+  "adpaiekevinApp": {
+    "tauxDImposition": {
+      "home": {
+        "title": "Taux D Impositions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Taux D Imposition",
+        "createOrEditLabel": "Create or edit a Taux D Imposition",
+        "notFound": "No Taux D Impositions found"
+      },
+      "created": "A new Taux D Imposition is created with identifier {{ param }}",
+      "updated": "A Taux D Imposition is updated with identifier {{ param }}",
+      "deleted": "A Taux D Imposition is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Taux D Imposition {{ id }}?"
+      },
+      "detail": {
+        "title": "Taux D Imposition"
+      },
+      "id": "ID",
+      "taux": "Taux",
+      "minSalary": "Min Salary",
+      "maxSalary": "Max Salary",
+      "startDate": "Start Date",
+      "endDate": "End Date"
+    }
+  }
+}

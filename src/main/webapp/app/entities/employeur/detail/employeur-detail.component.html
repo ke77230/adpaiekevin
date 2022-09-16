@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="employeur">
+      <h2 data-cy="employeurDetailsHeading"><span jhiTranslate="adpaiekevinApp.employeur.detail.title">Employeur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ employeur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employeur.name">Name</span></dt>
+        <dd>
+          <span>{{ employeur.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employeur.numeroSiret">Numero Siret</span></dt>
+        <dd>
+          <span>{{ employeur.numeroSiret }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employeur.numApe">Num Ape</span></dt>
+        <dd>
+          <span>{{ employeur.numApe }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employeur.numUrssaf">Num Urssaf</span></dt>
+        <dd>
+          <span>{{ employeur.numUrssaf }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.employeur.conventionCollective">Convention Collective</span></dt>
+        <dd>
+          <span *ngFor="let conventionCollective of employeur.conventionCollectives; let last = last">
+            <a [routerLink]="['/convention-collective', conventionCollective.id, 'view']">{{ conventionCollective.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/employeur', employeur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

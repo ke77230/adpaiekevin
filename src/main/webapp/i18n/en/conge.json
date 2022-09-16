@@ -1,0 +1,32 @@
+{
+  "adpaiekevinApp": {
+    "conge": {
+      "home": {
+        "title": "Conges",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Conge",
+        "createOrEditLabel": "Create or edit a Conge",
+        "notFound": "No Conges found"
+      },
+      "created": "A new Conge is created with identifier {{ param }}",
+      "updated": "A Conge is updated with identifier {{ param }}",
+      "deleted": "A Conge is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Conge {{ id }}?"
+      },
+      "detail": {
+        "title": "Conge"
+      },
+      "id": "ID",
+      "holdateStart": "Holdate Start",
+      "holdateEnd": "Holdate End",
+      "holdatePay": "Holdate Pay",
+      "nbCongeAcquis": "Nb Conge Acquis",
+      "nbCongePris": "Nb Conge Pris",
+      "dateDemande": "Date Demande",
+      "decision": "Decision",
+      "dateReponse": "Date Reponse",
+      "contrat": "Contrat"
+    }
+  }
+}

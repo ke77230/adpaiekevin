@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity FicheDePaie.
+    -->
+    <changeSet id="20220916143417-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="contrat_id"
+                                 baseTableName="fiche_de_paie"
+                                 constraintName="fk_fiche_de_paie__contrat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contrat"/>
+
+        <addForeignKeyConstraint baseColumnNames="employeur_id"
+                                 baseTableName="fiche_de_paie"
+                                 constraintName="fk_fiche_de_paie__employeur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employeur"/>
+
+        <addForeignKeyConstraint baseColumnNames="imposition_id"
+                                 baseTableName="fiche_de_paie"
+                                 constraintName="fk_fiche_de_paie__imposition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="taux_d_imposition"/>
+
+        <addForeignKeyConstraint baseColumnNames="fiche_de_paie_id"
+                                 baseTableName="rel_fiche_de_paie__cotisation"
+                                 constraintName="fk_rel_fiche_de_paie__cotisation__fiche_de_paie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fiche_de_paie"/>
+
+        <addForeignKeyConstraint baseColumnNames="cotisation_id"
+                                 baseTableName="rel_fiche_de_paie__cotisation"
+                                 constraintName="fk_rel_fiche_de_paie__cotisation__cotisation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cotisation"/>
+
+        <addForeignKeyConstraint baseColumnNames="fiche_de_paie_id"
+                                 baseTableName="rel_fiche_de_paie__mention"
+                                 constraintName="fk_rel_fiche_de_paie__mention__fiche_de_paie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fiche_de_paie"/>
+
+        <addForeignKeyConstraint baseColumnNames="mention_id"
+                                 baseTableName="rel_fiche_de_paie__mention"
+                                 constraintName="fk_rel_fiche_de_paie__mention__mention_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mention"/>
+    </changeSet>
+</databaseChangeLog>

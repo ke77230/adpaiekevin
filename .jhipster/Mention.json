@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916143413",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "mention",
+  "fields": [
+    {
+      "fieldName": "mention",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Mention",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ficheDePaie",
+      "otherEntityRelationshipName": "mention",
+      "ownerSide": false,
+      "relationshipName": "ficheDePaie",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

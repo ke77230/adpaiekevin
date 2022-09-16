@@ -1,0 +1,57 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916143410",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "employeur",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroSiret",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMax": "14",
+      "fieldValidateRulesMin": "14"
+    },
+    {
+      "fieldName": "numApe",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMax": "5",
+      "fieldValidateRulesMin": "5"
+    },
+    {
+      "fieldName": "numUrssaf",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMax": "14",
+      "fieldValidateRulesMin": "14"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Employeur",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "conventionCollective",
+      "otherEntityRelationshipName": "employeur",
+      "ownerSide": true,
+      "relationshipName": "conventionCollective",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "employeur",
+      "ownerSide": false,
+      "relationshipName": "location",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

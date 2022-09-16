@@ -1,0 +1,207 @@
+
+
+// an ignored comment
+/** not an ignored comment */
+
+entity Location {
+    streetName String required,
+    numeroRue String required,
+    postalCode String required,
+    city String required,
+    stateProvince String required
+}
+
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+
+
+/**
+ * The Employee entity.
+ */
+entity Employee {
+    /**
+    * The firstname attribute.
+    */
+    firstName String required,
+    lastName String required,
+    numeroSecuriteSociale String required minlength(15) maxlength(15),
+   qualification String,
+    tauxImposition Float
+
+}
+
+entity Employeur {
+    name String required,
+    numeroSiret Integer required  min(14) max(14),
+    numApe Integer required min(5) max(5),
+    numUrssaf Integer required  min(14) max(14)
+
+}
+
+entity Job {
+    jobTitle String required,
+    minSalary Long,
+    maxSalary Long
+
+}
+
+entity TauxDImposition {
+
+    taux Float required,
+    minSalary Integer required,
+    maxSalary Integer,
+    startDate LocalDate required,
+    endDate LocalDate
+
+}
+
+entity Mention{
+    mention String required
+}
+
+enum Decision { Accepte, Refuse, Enattente }
+
+entity Conge {
+    holdateStart LocalDate required,
+    holdateEnd LocalDate required,
+    holdatePay Float required,
+    nbCongeAcquis Float,
+    nbCongePris Float required,
+    dateDemande LocalDate required,
+    decision Decision required,
+    dateReponse LocalDate
+}
+
+
+entity Bonus{
+    nom String required,
+    montant Float required,
+}
+
+enum TypeForfait{ Jour, Heure, Commission}
+
+entity Contrat{
+    salaireBase Float required,
+    emploi String required,
+    dateArrive LocalDate required,
+    classification Float required,
+    typeForfait TypeForfait required,
+    nbHeure Float
+}
+
+entity FicheDePaie {
+	salaireBrut Float required,
+	startDate LocalDate required,
+	endDate LocalDate required,
+    datepaiement LocalDate required,
+    salaireNet Float required,
+    montantNetAvantImpots Float required,
+    proFees Float required,
+    deductions Float
+}
+
+entity ConventionCollective {
+    idcc Integer required,
+    nom String required,
+    position Float required,
+    coefficient Integer required,
+    valeurPoint Float required,
+    baseFixe Float required,
+    salaireMinimaux Float required
+}
+
+enum  Categorie{ Sante, Retraite, Famille, AssuranceChomage, AutresCotisationsEmployeur, CGSCRDS, ReductionCotisationsPatronales}
+
+
+entity Cotisation{
+    name String required,
+    famille Categorie required,
+    taux Float required,
+    startDate LocalDate required,
+    endDate LocalDate,
+    actuel Boolean required,
+}
+
+
+
+relationship ManyToOne {
+    Bonus{contrat} to Contrat
+}
+relationship ManyToOne {
+    Conge{contrat} to Contrat
+}
+relationship ManyToOne {
+    FicheDePaie{contrat} to Contrat
+}
+relationship ManyToOne {
+    Contrat{conventionCollective} to ConventionCollective
+}
+relationship ManyToOne {
+    FicheDePaie{employeur} to Employeur
+}
+
+relationship ManyToOne {
+    Contrat{employeur} to Employeur
+}
+relationship ManyToOne {
+    Contrat{employee} to Employee
+}
+//plusieurs employeur pour une fiche de paie
+relationship ManyToMany {
+    FicheDePaie to Cotisation 
+}
+relationship ManyToMany {
+    Employeur to ConventionCollective
+}
+relationship ManyToMany {
+    FicheDePaie to Mention
+}
+relationship ManyToOne {
+    FicheDePaie{imposition} to TauxDImposition
+
+
+
+}
+
+relationship ManyToMany {
+    Location to Employee
+}
+
+relationship ManyToMany {
+    Location to Employeur
+}
+
+
+
+
+// defining multiple OneToMany relationships with comments
+relationship ManyToMany {
+    Employee to Job
+}
+//manager
+relationship ManyToOne {
+    Employee{employee} to Employee
+}
+// defining multiple oneToOne relationships
+
+// Set pagination options
+paginate Employee with infinite-scroll
+paginate Job with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+{
+  "adpaiekevinApp": {
+    "ficheDePaie": {
+      "home": {
+        "title": "FicheDePaies",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Fiche De Paie",
+        "createOrEditLabel": "Créer ou éditer un Fiche De Paie",
+        "notFound": "Aucun Fiche De Paie trouvé"
+      },
+      "created": "Un nouveau Fiche De Paie a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Fiche De Paie avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Fiche De Paie avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Fiche De Paie {{ id }} ?"
+      },
+      "detail": {
+        "title": "Fiche De Paie"
+      },
+      "id": "ID",
+      "salaireBrut": "Salaire Brut",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "datepaiement": "Datepaiement",
+      "salaireNet": "Salaire Net",
+      "montantNetAvantImpots": "Montant Net Avant Impots",
+      "proFees": "Pro Fees",
+      "deductions": "Deductions",
+      "contrat": "Contrat",
+      "employeur": "Employeur",
+      "imposition": "Imposition",
+      "cotisation": "Cotisation",
+      "mention": "Mention"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "adpaiekevinApp": {
+    "tauxDImposition": {
+      "home": {
+        "title": "TauxDImpositions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Taux D Imposition",
+        "createOrEditLabel": "Créer ou éditer un Taux D Imposition",
+        "notFound": "Aucun Taux D Imposition trouvé"
+      },
+      "created": "Un nouveau Taux D Imposition a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Taux D Imposition avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Taux D Imposition avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Taux D Imposition {{ id }} ?"
+      },
+      "detail": {
+        "title": "Taux D Imposition"
+      },
+      "id": "ID",
+      "taux": "Taux",
+      "minSalary": "Min Salary",
+      "maxSalary": "Max Salary",
+      "startDate": "Start Date",
+      "endDate": "End Date"
+    }
+  }
+}

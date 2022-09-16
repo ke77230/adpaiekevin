@@ -1,0 +1,123 @@
+<div>
+  <h2 id="page-heading" data-cy="EmployeurHeading">
+    <span jhiTranslate="adpaiekevinApp.employeur.home.title">Employeurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.employeur.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-employeur"
+        [routerLink]="['/employeur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.employeur.home.createLabel"> Créer un nouveau Employeur </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="employeurs?.length === 0">
+    <span jhiTranslate="adpaiekevinApp.employeur.home.notFound">Aucun Employeur trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="employeurs && employeurs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.employeur.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="numeroSiret">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.employeur.numeroSiret">Numero Siret</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="numApe">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.employeur.numApe">Num Ape</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="numUrssaf">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.employeur.numUrssaf">Num Urssaf</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="conventionCollective.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.employeur.conventionCollective">Convention Collective</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employeur of employeurs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/employeur', employeur.id, 'view']">{{ employeur.id }}</a>
+          </td>
+          <td>{{ employeur.name }}</td>
+          <td>{{ employeur.numeroSiret }}</td>
+          <td>{{ employeur.numApe }}</td>
+          <td>{{ employeur.numUrssaf }}</td>
+          <td>
+            <span *ngFor="let conventionCollective of employeur.conventionCollectives; let last = last">
+              <a class="form-control-static" [routerLink]="['/convention-collective', conventionCollective.id, 'view']">{{
+                conventionCollective.id
+              }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/employeur', employeur.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/employeur', employeur.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(employeur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

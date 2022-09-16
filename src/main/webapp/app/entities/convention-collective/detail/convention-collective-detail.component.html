@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="conventionCollective">
+      <h2 data-cy="conventionCollectiveDetailsHeading">
+        <span jhiTranslate="adpaiekevinApp.conventionCollective.detail.title">Convention Collective</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ conventionCollective.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conventionCollective.idcc">Idcc</span></dt>
+        <dd>
+          <span>{{ conventionCollective.idcc }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conventionCollective.nom">Nom</span></dt>
+        <dd>
+          <span>{{ conventionCollective.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conventionCollective.position">Position</span></dt>
+        <dd>
+          <span>{{ conventionCollective.position }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conventionCollective.coefficient">Coefficient</span></dt>
+        <dd>
+          <span>{{ conventionCollective.coefficient }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conventionCollective.valeurPoint">Valeur Point</span></dt>
+        <dd>
+          <span>{{ conventionCollective.valeurPoint }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conventionCollective.baseFixe">Base Fixe</span></dt>
+        <dd>
+          <span>{{ conventionCollective.baseFixe }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conventionCollective.salaireMinimaux">Salaire Minimaux</span></dt>
+        <dd>
+          <span>{{ conventionCollective.salaireMinimaux }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/convention-collective', conventionCollective.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "adpaiekevinApp": {
+    "bonus": {
+      "home": {
+        "title": "Bonuses",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Bonus",
+        "createOrEditLabel": "Créer ou éditer un Bonus",
+        "notFound": "Aucun Bonus trouvé"
+      },
+      "created": "Un nouveau Bonus a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Bonus avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Bonus avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Bonus {{ id }} ?"
+      },
+      "detail": {
+        "title": "Bonus"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "montant": "Montant",
+      "contrat": "Contrat"
+    }
+  }
+}

@@ -1,0 +1,194 @@
+<div>
+  <h2 id="page-heading" data-cy="FicheDePaieHeading">
+    <span jhiTranslate="adpaiekevinApp.ficheDePaie.home.title">FicheDePaies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.ficheDePaie.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-fiche-de-paie"
+        [routerLink]="['/fiche-de-paie/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.ficheDePaie.home.createLabel"> Créer un nouveau Fiche De Paie </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ficheDePaies?.length === 0">
+    <span jhiTranslate="adpaiekevinApp.ficheDePaie.home.notFound">Aucun Fiche De Paie trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="ficheDePaies && ficheDePaies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="salaireBrut">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.salaireBrut">Salaire Brut</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startDate">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.startDate">Start Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.endDate">End Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="datepaiement">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.datepaiement">Datepaiement</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="salaireNet">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.salaireNet">Salaire Net</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montantNetAvantImpots">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.montantNetAvantImpots">Montant Net Avant Impots</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="proFees">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.proFees">Pro Fees</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="deductions">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.deductions">Deductions</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contrat.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.contrat">Contrat</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="employeur.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.employeur">Employeur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="imposition.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.imposition">Imposition</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cotisation.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.cotisation">Cotisation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="mention.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.ficheDePaie.mention">Mention</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ficheDePaie of ficheDePaies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/fiche-de-paie', ficheDePaie.id, 'view']">{{ ficheDePaie.id }}</a>
+          </td>
+          <td>{{ ficheDePaie.salaireBrut }}</td>
+          <td>{{ ficheDePaie.startDate | formatMediumDate }}</td>
+          <td>{{ ficheDePaie.endDate | formatMediumDate }}</td>
+          <td>{{ ficheDePaie.datepaiement | formatMediumDate }}</td>
+          <td>{{ ficheDePaie.salaireNet }}</td>
+          <td>{{ ficheDePaie.montantNetAvantImpots }}</td>
+          <td>{{ ficheDePaie.proFees }}</td>
+          <td>{{ ficheDePaie.deductions }}</td>
+          <td>
+            <div *ngIf="ficheDePaie.contrat">
+              <a [routerLink]="['/contrat', ficheDePaie.contrat.id, 'view']">{{ ficheDePaie.contrat.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ficheDePaie.employeur">
+              <a [routerLink]="['/employeur', ficheDePaie.employeur.id, 'view']">{{ ficheDePaie.employeur.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ficheDePaie.imposition">
+              <a [routerLink]="['/taux-d-imposition', ficheDePaie.imposition.id, 'view']">{{ ficheDePaie.imposition.id }}</a>
+            </div>
+          </td>
+          <td>
+            <span *ngFor="let cotisation of ficheDePaie.cotisations; let last = last">
+              <a class="form-control-static" [routerLink]="['/cotisation', cotisation.id, 'view']">{{ cotisation.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td>
+            <span *ngFor="let mention of ficheDePaie.mentions; let last = last">
+              <a class="form-control-static" [routerLink]="['/mention', mention.id, 'view']">{{ mention.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/fiche-de-paie', ficheDePaie.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/fiche-de-paie', ficheDePaie.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(ficheDePaie)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

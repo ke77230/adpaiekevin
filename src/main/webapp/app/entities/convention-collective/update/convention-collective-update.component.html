@@ -1,0 +1,198 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-convention-collective-heading"
+        data-cy="ConventionCollectiveCreateUpdateHeading"
+        jhiTranslate="adpaiekevinApp.conventionCollective.home.createOrEditLabel"
+      >
+        Créer ou éditer un Convention Collective
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conventionCollective.idcc" for="field_idcc">Idcc</label>
+          <input type="number" class="form-control" name="idcc" id="field_idcc" data-cy="idcc" formControlName="idcc" />
+          <div *ngIf="editForm.get('idcc')!.invalid && (editForm.get('idcc')!.dirty || editForm.get('idcc')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('idcc')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('idcc')?.errors?.number" jhiTranslate="entity.validation.number">
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conventionCollective.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conventionCollective.position" for="field_position">Position</label>
+          <input type="number" class="form-control" name="position" id="field_position" data-cy="position" formControlName="position" />
+          <div *ngIf="editForm.get('position')!.invalid && (editForm.get('position')!.dirty || editForm.get('position')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('position')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('position')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conventionCollective.coefficient" for="field_coefficient"
+            >Coefficient</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="coefficient"
+            id="field_coefficient"
+            data-cy="coefficient"
+            formControlName="coefficient"
+          />
+          <div *ngIf="editForm.get('coefficient')!.invalid && (editForm.get('coefficient')!.dirty || editForm.get('coefficient')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('coefficient')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('coefficient')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conventionCollective.valeurPoint" for="field_valeurPoint"
+            >Valeur Point</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valeurPoint"
+            id="field_valeurPoint"
+            data-cy="valeurPoint"
+            formControlName="valeurPoint"
+          />
+          <div *ngIf="editForm.get('valeurPoint')!.invalid && (editForm.get('valeurPoint')!.dirty || editForm.get('valeurPoint')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('valeurPoint')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('valeurPoint')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conventionCollective.baseFixe" for="field_baseFixe">Base Fixe</label>
+          <input type="number" class="form-control" name="baseFixe" id="field_baseFixe" data-cy="baseFixe" formControlName="baseFixe" />
+          <div *ngIf="editForm.get('baseFixe')!.invalid && (editForm.get('baseFixe')!.dirty || editForm.get('baseFixe')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('baseFixe')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('baseFixe')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.conventionCollective.salaireMinimaux" for="field_salaireMinimaux"
+            >Salaire Minimaux</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="salaireMinimaux"
+            id="field_salaireMinimaux"
+            data-cy="salaireMinimaux"
+            formControlName="salaireMinimaux"
+          />
+          <div
+            *ngIf="
+              editForm.get('salaireMinimaux')!.invalid &&
+              (editForm.get('salaireMinimaux')!.dirty || editForm.get('salaireMinimaux')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('salaireMinimaux')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('salaireMinimaux')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

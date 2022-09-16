@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="location">
+      <h2 data-cy="locationDetailsHeading"><span jhiTranslate="adpaiekevinApp.location.detail.title">Location</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ location.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.location.streetName">Street Name</span></dt>
+        <dd>
+          <span>{{ location.streetName }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.location.numeroRue">Numero Rue</span></dt>
+        <dd>
+          <span>{{ location.numeroRue }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.location.postalCode">Postal Code</span></dt>
+        <dd>
+          <span>{{ location.postalCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.location.city">City</span></dt>
+        <dd>
+          <span>{{ location.city }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.location.stateProvince">State Province</span></dt>
+        <dd>
+          <span>{{ location.stateProvince }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.location.employee">Employee</span></dt>
+        <dd>
+          <span *ngFor="let employee of location.employees; let last = last">
+            <a [routerLink]="['/employee', employee.id, 'view']">{{ employee.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.location.employeur">Employeur</span></dt>
+        <dd>
+          <span *ngFor="let employeur of location.employeurs; let last = last">
+            <a [routerLink]="['/employeur', employeur.id, 'view']">{{ employeur.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/location', location.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

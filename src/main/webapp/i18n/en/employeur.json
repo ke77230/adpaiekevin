@@ -1,0 +1,29 @@
+{
+  "adpaiekevinApp": {
+    "employeur": {
+      "home": {
+        "title": "Employeurs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Employeur",
+        "createOrEditLabel": "Create or edit a Employeur",
+        "notFound": "No Employeurs found"
+      },
+      "created": "A new Employeur is created with identifier {{ param }}",
+      "updated": "A Employeur is updated with identifier {{ param }}",
+      "deleted": "A Employeur is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Employeur {{ id }}?"
+      },
+      "detail": {
+        "title": "Employeur"
+      },
+      "id": "ID",
+      "name": "Name",
+      "numeroSiret": "Numero Siret",
+      "numApe": "Num Ape",
+      "numUrssaf": "Num Urssaf",
+      "conventionCollective": "Convention Collective",
+      "location": "Location"
+    }
+  }
+}

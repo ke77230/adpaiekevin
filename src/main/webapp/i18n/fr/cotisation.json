@@ -1,0 +1,30 @@
+{
+  "adpaiekevinApp": {
+    "cotisation": {
+      "home": {
+        "title": "Cotisations",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cotisation",
+        "createOrEditLabel": "Créer ou éditer un Cotisation",
+        "notFound": "Aucun Cotisation trouvé"
+      },
+      "created": "Un nouveau Cotisation a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cotisation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cotisation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Cotisation {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cotisation"
+      },
+      "id": "ID",
+      "name": "Name",
+      "famille": "Famille",
+      "taux": "Taux",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "actuel": "Actuel",
+      "ficheDePaie": "Fiche De Paie"
+    }
+  }
+}

@@ -1,0 +1,323 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-fiche-de-paie-heading"
+        data-cy="FicheDePaieCreateUpdateHeading"
+        jhiTranslate="adpaiekevinApp.ficheDePaie.home.createOrEditLabel"
+      >
+        Créer ou éditer un Fiche De Paie
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.salaireBrut" for="field_salaireBrut">Salaire Brut</label>
+          <input
+            type="number"
+            class="form-control"
+            name="salaireBrut"
+            id="field_salaireBrut"
+            data-cy="salaireBrut"
+            formControlName="salaireBrut"
+          />
+          <div *ngIf="editForm.get('salaireBrut')!.invalid && (editForm.get('salaireBrut')!.dirty || editForm.get('salaireBrut')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('salaireBrut')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('salaireBrut')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.startDate" for="field_startDate">Start Date</label>
+          <div class="input-group">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="text"
+              class="form-control"
+              name="startDate"
+              ngbDatepicker
+              #startDateDp="ngbDatepicker"
+              formControlName="startDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('startDate')!.invalid && (editForm.get('startDate')!.dirty || editForm.get('startDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('startDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.endDate" for="field_endDate">End Date</label>
+          <div class="input-group">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="text"
+              class="form-control"
+              name="endDate"
+              ngbDatepicker
+              #endDateDp="ngbDatepicker"
+              formControlName="endDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('endDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.datepaiement" for="field_datepaiement">Datepaiement</label>
+          <div class="input-group">
+            <input
+              id="field_datepaiement"
+              data-cy="datepaiement"
+              type="text"
+              class="form-control"
+              name="datepaiement"
+              ngbDatepicker
+              #datepaiementDp="ngbDatepicker"
+              formControlName="datepaiement"
+            />
+            <button type="button" class="btn btn-secondary" (click)="datepaiementDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="editForm.get('datepaiement')!.invalid && (editForm.get('datepaiement')!.dirty || editForm.get('datepaiement')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('datepaiement')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.salaireNet" for="field_salaireNet">Salaire Net</label>
+          <input
+            type="number"
+            class="form-control"
+            name="salaireNet"
+            id="field_salaireNet"
+            data-cy="salaireNet"
+            formControlName="salaireNet"
+          />
+          <div *ngIf="editForm.get('salaireNet')!.invalid && (editForm.get('salaireNet')!.dirty || editForm.get('salaireNet')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('salaireNet')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('salaireNet')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.montantNetAvantImpots" for="field_montantNetAvantImpots"
+            >Montant Net Avant Impots</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="montantNetAvantImpots"
+            id="field_montantNetAvantImpots"
+            data-cy="montantNetAvantImpots"
+            formControlName="montantNetAvantImpots"
+          />
+          <div
+            *ngIf="
+              editForm.get('montantNetAvantImpots')!.invalid &&
+              (editForm.get('montantNetAvantImpots')!.dirty || editForm.get('montantNetAvantImpots')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('montantNetAvantImpots')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('montantNetAvantImpots')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.proFees" for="field_proFees">Pro Fees</label>
+          <input type="number" class="form-control" name="proFees" id="field_proFees" data-cy="proFees" formControlName="proFees" />
+          <div *ngIf="editForm.get('proFees')!.invalid && (editForm.get('proFees')!.dirty || editForm.get('proFees')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('proFees')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('proFees')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.deductions" for="field_deductions">Deductions</label>
+          <input
+            type="number"
+            class="form-control"
+            name="deductions"
+            id="field_deductions"
+            data-cy="deductions"
+            formControlName="deductions"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.contrat" for="field_contrat">Contrat</label>
+          <select
+            class="form-control"
+            id="field_contrat"
+            data-cy="contrat"
+            name="contrat"
+            formControlName="contrat"
+            [compareWith]="compareContrat"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="contratOption" *ngFor="let contratOption of contratsSharedCollection">{{ contratOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.employeur" for="field_employeur">Employeur</label>
+          <select
+            class="form-control"
+            id="field_employeur"
+            data-cy="employeur"
+            name="employeur"
+            formControlName="employeur"
+            [compareWith]="compareEmployeur"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="employeurOption" *ngFor="let employeurOption of employeursSharedCollection">{{ employeurOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.ficheDePaie.imposition" for="field_imposition">Imposition</label>
+          <select
+            class="form-control"
+            id="field_imposition"
+            data-cy="imposition"
+            name="imposition"
+            formControlName="imposition"
+            [compareWith]="compareTauxDImposition"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="tauxDImpositionOption" *ngFor="let tauxDImpositionOption of tauxDImpositionsSharedCollection">
+              {{ tauxDImpositionOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="adpaiekevinApp.ficheDePaie.cotisation" for="field_cotisations">Cotisation</label>
+          <select
+            class="form-control"
+            id="field_cotisations"
+            data-cy="cotisation"
+            multiple
+            name="cotisations"
+            formControlName="cotisations"
+            [compareWith]="compareCotisation"
+          >
+            <option [ngValue]="cotisationOption" *ngFor="let cotisationOption of cotisationsSharedCollection">
+              {{ cotisationOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="adpaiekevinApp.ficheDePaie.mention" for="field_mentions">Mention</label>
+          <select
+            class="form-control"
+            id="field_mentions"
+            data-cy="mention"
+            multiple
+            name="mentions"
+            formControlName="mentions"
+            [compareWith]="compareMention"
+          >
+            <option [ngValue]="mentionOption" *ngFor="let mentionOption of mentionsSharedCollection">{{ mentionOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

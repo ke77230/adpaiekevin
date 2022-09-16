@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="tauxDImposition">
+      <h2 data-cy="tauxDImpositionDetailsHeading">
+        <span jhiTranslate="adpaiekevinApp.tauxDImposition.detail.title">Taux D Imposition</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ tauxDImposition.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.tauxDImposition.taux">Taux</span></dt>
+        <dd>
+          <span>{{ tauxDImposition.taux }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.tauxDImposition.minSalary">Min Salary</span></dt>
+        <dd>
+          <span>{{ tauxDImposition.minSalary }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.tauxDImposition.maxSalary">Max Salary</span></dt>
+        <dd>
+          <span>{{ tauxDImposition.maxSalary }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.tauxDImposition.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ tauxDImposition.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.tauxDImposition.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ tauxDImposition.endDate | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/taux-d-imposition', tauxDImposition.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

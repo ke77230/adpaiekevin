@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contrat">
+      <h2 data-cy="contratDetailsHeading"><span jhiTranslate="adpaiekevinApp.contrat.detail.title">Contrat</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contrat.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.salaireBase">Salaire Base</span></dt>
+        <dd>
+          <span>{{ contrat.salaireBase }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.emploi">Emploi</span></dt>
+        <dd>
+          <span>{{ contrat.emploi }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.dateArrive">Date Arrive</span></dt>
+        <dd>
+          <span>{{ contrat.dateArrive | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.classification">Classification</span></dt>
+        <dd>
+          <span>{{ contrat.classification }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.typeForfait">Type Forfait</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'adpaiekevinApp.TypeForfait.' + contrat.typeForfait }}">{{ contrat.typeForfait }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.nbHeure">Nb Heure</span></dt>
+        <dd>
+          <span>{{ contrat.nbHeure }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.conventionCollective">Convention Collective</span></dt>
+        <dd>
+          <div *ngIf="contrat.conventionCollective">
+            <a [routerLink]="['/convention-collective', contrat.conventionCollective.id, 'view']">{{ contrat.conventionCollective.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.employeur">Employeur</span></dt>
+        <dd>
+          <div *ngIf="contrat.employeur">
+            <a [routerLink]="['/employeur', contrat.employeur.id, 'view']">{{ contrat.employeur.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.contrat.employee">Employee</span></dt>
+        <dd>
+          <div *ngIf="contrat.employee">
+            <a [routerLink]="['/employee', contrat.employee.id, 'view']">{{ contrat.employee.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contrat', contrat.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

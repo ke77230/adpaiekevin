@@ -1,0 +1,130 @@
+<div>
+  <h2 id="page-heading" data-cy="ConventionCollectiveHeading">
+    <span jhiTranslate="adpaiekevinApp.conventionCollective.home.title">ConventionCollectives</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.conventionCollective.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-convention-collective"
+        [routerLink]="['/convention-collective/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.conventionCollective.home.createLabel"> Créer un nouveau Convention Collective </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="conventionCollectives?.length === 0">
+    <span jhiTranslate="adpaiekevinApp.conventionCollective.home.notFound">Aucun Convention Collective trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="conventionCollectives && conventionCollectives.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idcc">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.conventionCollective.idcc">Idcc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nom">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.conventionCollective.nom">Nom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="position">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.conventionCollective.position">Position</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="coefficient">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.conventionCollective.coefficient">Coefficient</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="valeurPoint">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.conventionCollective.valeurPoint">Valeur Point</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="baseFixe">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.conventionCollective.baseFixe">Base Fixe</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="salaireMinimaux">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.conventionCollective.salaireMinimaux">Salaire Minimaux</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let conventionCollective of conventionCollectives; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/convention-collective', conventionCollective.id, 'view']">{{ conventionCollective.id }}</a>
+          </td>
+          <td>{{ conventionCollective.idcc }}</td>
+          <td>{{ conventionCollective.nom }}</td>
+          <td>{{ conventionCollective.position }}</td>
+          <td>{{ conventionCollective.coefficient }}</td>
+          <td>{{ conventionCollective.valeurPoint }}</td>
+          <td>{{ conventionCollective.baseFixe }}</td>
+          <td>{{ conventionCollective.salaireMinimaux }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/convention-collective', conventionCollective.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/convention-collective', conventionCollective.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(conventionCollective)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

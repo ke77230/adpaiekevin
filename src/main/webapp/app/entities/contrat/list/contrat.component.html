@@ -1,0 +1,158 @@
+<div>
+  <h2 id="page-heading" data-cy="ContratHeading">
+    <span jhiTranslate="adpaiekevinApp.contrat.home.title">Contrats</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.contrat.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contrat"
+        [routerLink]="['/contrat/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.contrat.home.createLabel"> Créer un nouveau Contrat </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contrats?.length === 0">
+    <span jhiTranslate="adpaiekevinApp.contrat.home.notFound">Aucun Contrat trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="contrats && contrats.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="salaireBase">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.salaireBase">Salaire Base</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="emploi">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.emploi">Emploi</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateArrive">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.dateArrive">Date Arrive</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="classification">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.classification">Classification</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="typeForfait">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.typeForfait">Type Forfait</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nbHeure">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.nbHeure">Nb Heure</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="conventionCollective.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.conventionCollective">Convention Collective</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="employeur.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.employeur">Employeur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="employee.id">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.contrat.employee">Employee</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contrat of contrats; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contrat', contrat.id, 'view']">{{ contrat.id }}</a>
+          </td>
+          <td>{{ contrat.salaireBase }}</td>
+          <td>{{ contrat.emploi }}</td>
+          <td>{{ contrat.dateArrive | formatMediumDate }}</td>
+          <td>{{ contrat.classification }}</td>
+          <td jhiTranslate="{{ 'adpaiekevinApp.TypeForfait.' + contrat.typeForfait }}">{{ contrat.typeForfait }}</td>
+          <td>{{ contrat.nbHeure }}</td>
+          <td>
+            <div *ngIf="contrat.conventionCollective">
+              <a [routerLink]="['/convention-collective', contrat.conventionCollective.id, 'view']">{{
+                contrat.conventionCollective.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="contrat.employeur">
+              <a [routerLink]="['/employeur', contrat.employeur.id, 'view']">{{ contrat.employeur.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="contrat.employee">
+              <a [routerLink]="['/employee', contrat.employee.id, 'view']">{{ contrat.employee.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contrat', contrat.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contrat', contrat.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(contrat)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

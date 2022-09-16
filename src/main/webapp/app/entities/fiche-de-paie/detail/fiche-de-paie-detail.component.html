@@ -1,0 +1,92 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ficheDePaie">
+      <h2 data-cy="ficheDePaieDetailsHeading"><span jhiTranslate="adpaiekevinApp.ficheDePaie.detail.title">Fiche De Paie</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.salaireBrut">Salaire Brut</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.salaireBrut }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.endDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.datepaiement">Datepaiement</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.datepaiement | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.salaireNet">Salaire Net</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.salaireNet }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.montantNetAvantImpots">Montant Net Avant Impots</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.montantNetAvantImpots }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.proFees">Pro Fees</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.proFees }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.deductions">Deductions</span></dt>
+        <dd>
+          <span>{{ ficheDePaie.deductions }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.contrat">Contrat</span></dt>
+        <dd>
+          <div *ngIf="ficheDePaie.contrat">
+            <a [routerLink]="['/contrat', ficheDePaie.contrat.id, 'view']">{{ ficheDePaie.contrat.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.employeur">Employeur</span></dt>
+        <dd>
+          <div *ngIf="ficheDePaie.employeur">
+            <a [routerLink]="['/employeur', ficheDePaie.employeur.id, 'view']">{{ ficheDePaie.employeur.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.imposition">Imposition</span></dt>
+        <dd>
+          <div *ngIf="ficheDePaie.imposition">
+            <a [routerLink]="['/taux-d-imposition', ficheDePaie.imposition.id, 'view']">{{ ficheDePaie.imposition.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.cotisation">Cotisation</span></dt>
+        <dd>
+          <span *ngFor="let cotisation of ficheDePaie.cotisations; let last = last">
+            <a [routerLink]="['/cotisation', cotisation.id, 'view']">{{ cotisation.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.ficheDePaie.mention">Mention</span></dt>
+        <dd>
+          <span *ngFor="let mention of ficheDePaie.mentions; let last = last">
+            <a [routerLink]="['/mention', mention.id, 'view']">{{ mention.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fiche-de-paie', ficheDePaie.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

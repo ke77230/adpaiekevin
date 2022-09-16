@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="conge">
+      <h2 data-cy="congeDetailsHeading"><span jhiTranslate="adpaiekevinApp.conge.detail.title">Conge</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ conge.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.holdateStart">Holdate Start</span></dt>
+        <dd>
+          <span>{{ conge.holdateStart | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.holdateEnd">Holdate End</span></dt>
+        <dd>
+          <span>{{ conge.holdateEnd | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.holdatePay">Holdate Pay</span></dt>
+        <dd>
+          <span>{{ conge.holdatePay }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.nbCongeAcquis">Nb Conge Acquis</span></dt>
+        <dd>
+          <span>{{ conge.nbCongeAcquis }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.nbCongePris">Nb Conge Pris</span></dt>
+        <dd>
+          <span>{{ conge.nbCongePris }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.dateDemande">Date Demande</span></dt>
+        <dd>
+          <span>{{ conge.dateDemande | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.decision">Decision</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'adpaiekevinApp.Decision.' + conge.decision }}">{{ conge.decision }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.dateReponse">Date Reponse</span></dt>
+        <dd>
+          <span>{{ conge.dateReponse | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.conge.contrat">Contrat</span></dt>
+        <dd>
+          <div *ngIf="conge.contrat">
+            <a [routerLink]="['/contrat', conge.contrat.id, 'view']">{{ conge.contrat.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/conge', conge.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

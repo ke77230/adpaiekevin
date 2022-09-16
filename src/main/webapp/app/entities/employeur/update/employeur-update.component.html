@@ -1,0 +1,173 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-employeur-heading" data-cy="EmployeurCreateUpdateHeading" jhiTranslate="adpaiekevinApp.employeur.home.createOrEditLabel">
+        Créer ou éditer un Employeur
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.employeur.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.employeur.numeroSiret" for="field_numeroSiret">Numero Siret</label>
+          <input
+            type="number"
+            class="form-control"
+            name="numeroSiret"
+            id="field_numeroSiret"
+            data-cy="numeroSiret"
+            formControlName="numeroSiret"
+          />
+          <div *ngIf="editForm.get('numeroSiret')!.invalid && (editForm.get('numeroSiret')!.dirty || editForm.get('numeroSiret')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numeroSiret')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numeroSiret')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 14 }"
+            >
+              Ce champ doit être supérieur à 14.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numeroSiret')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 14 }"
+            >
+              Ce champ doit être inférieur à 14.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('numeroSiret')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.employeur.numApe" for="field_numApe">Num Ape</label>
+          <input type="number" class="form-control" name="numApe" id="field_numApe" data-cy="numApe" formControlName="numApe" />
+          <div *ngIf="editForm.get('numApe')!.invalid && (editForm.get('numApe')!.dirty || editForm.get('numApe')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('numApe')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numApe')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 5 }"
+            >
+              Ce champ doit être supérieur à 5.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numApe')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 5 }"
+            >
+              Ce champ doit être inférieur à 5.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('numApe')?.errors?.number" jhiTranslate="entity.validation.number">
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="adpaiekevinApp.employeur.numUrssaf" for="field_numUrssaf">Num Urssaf</label>
+          <input type="number" class="form-control" name="numUrssaf" id="field_numUrssaf" data-cy="numUrssaf" formControlName="numUrssaf" />
+          <div *ngIf="editForm.get('numUrssaf')!.invalid && (editForm.get('numUrssaf')!.dirty || editForm.get('numUrssaf')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numUrssaf')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numUrssaf')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 14 }"
+            >
+              Ce champ doit être supérieur à 14.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numUrssaf')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 14 }"
+            >
+              Ce champ doit être inférieur à 14.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('numUrssaf')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="adpaiekevinApp.employeur.conventionCollective" for="field_conventionCollectives"
+            >Convention Collective</label
+          >
+          <select
+            class="form-control"
+            id="field_conventionCollectives"
+            data-cy="conventionCollective"
+            multiple
+            name="conventionCollectives"
+            formControlName="conventionCollectives"
+            [compareWith]="compareConventionCollective"
+          >
+            <option [ngValue]="conventionCollectiveOption" *ngFor="let conventionCollectiveOption of conventionCollectivesSharedCollection">
+              {{ conventionCollectiveOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916143409",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "employee",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "The firstname attribute."
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroSecuriteSociale",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesMinlength": "15"
+    },
+    {
+      "fieldName": "qualification",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tauxImposition",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "The Employee entity.",
+  "jpaMetamodelFiltering": false,
+  "name": "Employee",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "employee",
+      "relationshipName": "employee",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "job",
+      "otherEntityRelationshipName": "employee",
+      "ownerSide": true,
+      "relationshipName": "job",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "employee",
+      "ownerSide": false,
+      "relationshipName": "location",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

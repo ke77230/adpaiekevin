@@ -1,0 +1,85 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916143417",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "fiche_de_paie",
+  "fields": [
+    {
+      "fieldName": "salaireBrut",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "datepaiement",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "salaireNet",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "montantNetAvantImpots",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "proFees",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "deductions",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FicheDePaie",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "contrat",
+      "relationshipName": "contrat",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "employeur",
+      "relationshipName": "employeur",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "tauxDImposition",
+      "relationshipName": "imposition",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "cotisation",
+      "otherEntityRelationshipName": "ficheDePaie",
+      "ownerSide": true,
+      "relationshipName": "cotisation",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "mention",
+      "otherEntityRelationshipName": "ficheDePaie",
+      "ownerSide": true,
+      "relationshipName": "mention",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

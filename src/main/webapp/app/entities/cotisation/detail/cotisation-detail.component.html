@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cotisation">
+      <h2 data-cy="cotisationDetailsHeading"><span jhiTranslate="adpaiekevinApp.cotisation.detail.title">Cotisation</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cotisation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.cotisation.name">Name</span></dt>
+        <dd>
+          <span>{{ cotisation.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.cotisation.famille">Famille</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'adpaiekevinApp.Categorie.' + cotisation.famille }}">{{ cotisation.famille }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.cotisation.taux">Taux</span></dt>
+        <dd>
+          <span>{{ cotisation.taux }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.cotisation.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ cotisation.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.cotisation.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ cotisation.endDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="adpaiekevinApp.cotisation.actuel">Actuel</span></dt>
+        <dd>
+          <span>{{ cotisation.actuel }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cotisation', cotisation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

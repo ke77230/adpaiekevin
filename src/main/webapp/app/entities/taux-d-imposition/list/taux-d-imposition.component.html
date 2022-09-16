@@ -1,0 +1,116 @@
+<div>
+  <h2 id="page-heading" data-cy="TauxDImpositionHeading">
+    <span jhiTranslate="adpaiekevinApp.tauxDImposition.home.title">TauxDImpositions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.tauxDImposition.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-taux-d-imposition"
+        [routerLink]="['/taux-d-imposition/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="adpaiekevinApp.tauxDImposition.home.createLabel"> Créer un nouveau Taux D Imposition </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="tauxDImpositions?.length === 0">
+    <span jhiTranslate="adpaiekevinApp.tauxDImposition.home.notFound">Aucun Taux D Imposition trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="tauxDImpositions && tauxDImpositions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="taux">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.tauxDImposition.taux">Taux</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="minSalary">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.tauxDImposition.minSalary">Min Salary</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="maxSalary">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.tauxDImposition.maxSalary">Max Salary</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startDate">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.tauxDImposition.startDate">Start Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <div class="d-flex">
+              <span jhiTranslate="adpaiekevinApp.tauxDImposition.endDate">End Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tauxDImposition of tauxDImpositions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/taux-d-imposition', tauxDImposition.id, 'view']">{{ tauxDImposition.id }}</a>
+          </td>
+          <td>{{ tauxDImposition.taux }}</td>
+          <td>{{ tauxDImposition.minSalary }}</td>
+          <td>{{ tauxDImposition.maxSalary }}</td>
+          <td>{{ tauxDImposition.startDate | formatMediumDate }}</td>
+          <td>{{ tauxDImposition.endDate | formatMediumDate }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/taux-d-imposition', tauxDImposition.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/taux-d-imposition', tauxDImposition.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(tauxDImposition)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

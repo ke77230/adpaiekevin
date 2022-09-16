@@ -1,0 +1,61 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916143414",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "conge",
+  "fields": [
+    {
+      "fieldName": "holdateStart",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "holdateEnd",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "holdatePay",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nbCongeAcquis",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "nbCongePris",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateDemande",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "decision",
+      "fieldType": "Decision",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Accepte,Refuse,Enattente"
+    },
+    {
+      "fieldName": "dateReponse",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Conge",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "contrat",
+      "relationshipName": "contrat",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
